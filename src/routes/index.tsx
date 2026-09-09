@@ -1,24 +1,110 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { ArrowRight, Check, ChevronDown, LockKeyhole, Ruler, ClipboardList, Scissors, Wrench, BadgeDollarSign, TrendingUp, ShieldCheck, X } from "lucide-react";
+import { images } from "@/assets/pack/assets";
 
 // No head() here: the home route inherits title/description/og/twitter from
 // __root.tsx, and ships no og:image so serve-time hosting can inject the
 // project's social preview (explicit og:image or latest screenshot).
 export const Route = createFileRoute("/")({
+  head: () => ({ meta: [
+    { title: "Pack Tesouro do Serralheiro | +3.000 Projetos" },
+    { name: "description", content: "Acesse mais de 3.000 projetos de serralheria com medidas, materiais e informações para fabricar e vender." },
+    { property: "og:title", content: "Pack Tesouro do Serralheiro" },
+    { property: "og:description", content: "+3.000 projetos prontos para fabricar e vender." },
+    { property: "og:type", content: "website" },
+    { name: "twitter:card", content: "summary_large_image" },
+  ]}),
   component: Index,
 });
 
 // IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
 function Index() {
+  const categories = ["PORTÕES", "CARRETINHAS", "REBOQUES", "MÓVEIS INDUSTRIAIS", "ESTRUTURAS METÁLICAS", "CHURRASQUEIRAS", "APARELHOS DE ACADEMIA", "PROJETOS AUTOMOTIVOS"];
+  const deliverables = [
+    [Ruler, "Medidas das peças"], [ClipboardList, "Lista de materiais"], [Scissors, "Esquema de corte"],
+    [Wrench, "Informações de montagem"], [BadgeDollarSign, "Custo médio de produção"],
+    [BadgeDollarSign, "Sugestão de preço de venda"], [TrendingUp, "Estimativa de lucro"],
+  ] as const;
+  const bonuses = [
+    ["PLANILHA AUTOMÁTICA DE PRECIFICAÇÃO", "Ajude a organizar custos e chegar ao preço de venda."],
+    ["LISTA DE FORNECEDORES", "Referências para facilitar sua busca por materiais."],
+    ["GUIA: QUANTO COBRAR SEM PERDER SERVIÇO", "Material complementar sobre formação de preço."],
+    ["PROJETOS MAIS PEDIDOS EM CIDADES PEQUENAS", "Seleção adicional de ideias de projetos."],
+  ];
+  const testimonials = [
+    ["Carlos Silva", "São Paulo, SP", "Já fiz mais de 30 projetos do pack. O que mais vende são os portões e as grades. Material de primeira qualidade!"],
+    ["Roberto Almeida", "Belo Horizonte, MG", "Melhor investimento que fiz. Os projetos vêm com tudo: medidas, material, custo. É só fabricar e vender."],
+    ["José Santos", "Curitiba, PR", "Eu não tinha ideia do que fabricar. Com o pack, comecei a produzir escadas e corrimãos. Meu faturamento triplicou!"],
+  ];
+  const faq = [
+    ["Quais são as formas de pagamento?", "Aceitamos PIX, cartão de crédito em até 12x e boleto bancário."],
+    ["Como recebo meu acesso?", "Você recebe o acesso por e-mail logo após a confirmação do pagamento."],
+    ["O acesso é vitalício?", "Sim. Você pode acessar o material sempre que precisar."],
+    ["Consigo acessar pelo celular?", "Sim. O material pode ser consultado pelo celular, tablet ou computador."],
+    ["Os projetos possuem medidas?", "Sim. Os projetos incluem medidas e informações para facilitar a fabricação."],
+    ["Preciso ser serralheiro profissional?", "Não, mas conhecimento básico de ferramentas e fabricação ajuda a aproveitar melhor o material."],
+    ["Quando recebo o material?", "O acesso é liberado após a confirmação do pagamento. PIX e cartão costumam confirmar imediatamente."],
+    ["Como funciona a garantia?", "Você tem 7 dias para conhecer o material e pode solicitar o reembolso diretamente pela plataforma."],
+  ];
+  const basic = ["+3.000 projetos selecionados", "300 projetos de portões", "Projetos de carretinhas", "Projetos de carretas/plataformas", "200 projetos de móveis industriais", "Projetos de estruturas rápidas", "Acesso vitalício"];
+  const pro = ["+3.000 projetos completos", "300 projetos de portões", "Projetos de carretinhas", "Projetos de reboques", "Projetos de carretas/plataformas", "Projetos automotivos", "600 projetos de móveis industriais", "500 projetos de estruturas rápidas", "50 projetos de churrasqueiras", "100 projetos de aparelhos de academia", "Planilha de precificação", "Lista de fornecedores", "Guia de precificação", "Projetos mais pedidos", "Certificado", "Acesso vitalício"];
+  const Cta = ({ children = "QUERO ACESSAR OS +3.000 PROJETOS" }: { children?: string }) => <a href="#oferta" className="inline-flex min-h-14 w-full items-center justify-center gap-2 rounded bg-primary px-5 py-3 text-center text-sm font-extrabold text-primary-foreground shadow-lg transition-transform hover:-translate-y-0.5 sm:w-auto sm:text-base">{children}<ArrowRight className="size-5 shrink-0" /></a>;
+  const Heading = ({ children, light = false }: { children: React.ReactNode; light?: boolean }) => <h2 className={`mx-auto max-w-4xl text-center text-3xl font-black leading-tight sm:text-4xl lg:text-5xl ${light ? "text-ice" : "text-foreground"}`}>{children}</h2>;
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
+    <main>
+      <section className="relative overflow-hidden bg-coal text-ice">
+        <div className="absolute inset-0 opacity-10 [background-image:linear-gradient(var(--steel)_1px,transparent_1px),linear-gradient(90deg,var(--steel)_1px,transparent_1px)] [background-size:36px_36px]" />
+        <div className="relative mx-auto grid min-h-[760px] max-w-7xl items-center gap-10 px-5 py-14 lg:grid-cols-[1.05fr_.95fr] lg:px-8 lg:py-20">
+          <div>
+            <span className="inline-flex border-l-4 border-primary bg-graphite px-3 py-2 text-xs font-bold">🔥 PACK COMPLETO PARA SERRALHEIROS</span>
+            <h1 className="mt-6 text-4xl font-black leading-[1.06] sm:text-5xl lg:text-6xl">TENHA <span className="text-primary">+3.000 PROJETOS</span> DE SERRALHERIA PRONTOS PARA FABRICAR E VENDER</h1>
+            <p className="mt-6 max-w-2xl text-base leading-relaxed text-ice/75 sm:text-lg">Pare de perder horas criando projetos do zero. Tenha acesso a uma biblioteca completa com medidas, materiais, esquemas de corte e informações para facilitar sua produção.</p>
+            <ul className="my-7 space-y-3 text-sm font-semibold sm:text-base">{["Projetos organizados por categoria", "Medidas e materiais detalhados", "Acesso digital e vitalício"].map(x => <li key={x} className="flex items-center gap-3"><span className="grid size-6 shrink-0 place-items-center rounded-full bg-primary text-primary-foreground"><Check className="size-4" /></span>{x}</li>)}</ul>
+            <Cta />
+            <p className="mt-4 text-center text-[11px] text-ice/60 sm:text-left sm:text-xs">🔒 Compra segura &nbsp;|&nbsp; ⚡ Acesso imediato &nbsp;|&nbsp; ♾️ Acesso vitalício</p>
+          </div>
+          <div className="relative mx-auto w-full max-w-xl pb-8">
+            <div className="absolute right-1 top-0 z-20 -rotate-3 bg-primary px-4 py-3 text-sm font-black text-primary-foreground shadow-xl">+3.000 PROJETOS</div>
+            <div className="grid grid-cols-[1fr_2.1fr_1fr] items-center gap-2 pt-10">
+              <div className="space-y-3">{[images.projects[1], images.projects[4]].map((src,i)=><img key={src} src={src} alt={`Projeto de serralheria ${i+1}`} className="aspect-square w-full rounded border-2 border-steel/40 object-cover opacity-80" />)}</div>
+              <img src={images.pack} alt="Pack Tesouro do Serralheiro com mais de 3.000 projetos" className="relative z-10 w-full drop-shadow-2xl" />
+              <div className="space-y-3">{[images.projects[7], images.projects[10]].map((src,i)=><img key={src} src={src} alt={`Projeto de serralheria ${i+3}`} className="aspect-square w-full rounded border-2 border-steel/40 object-cover opacity-80" />)}</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-graphite text-ice"><div className="mx-auto grid max-w-6xl grid-cols-2 divide-x divide-y divide-steel/30 px-3 py-7 md:grid-cols-4 md:divide-y-0">{[["+3.000","PROJETOS"],["+10","CATEGORIAS"],["4","BÔNUS"],["7 DIAS","DE GARANTIA"]].map(([n,l])=><div key={l} className="px-3 py-4 text-center"><strong className="block text-3xl font-black text-primary">{n}</strong><span className="text-xs font-bold tracking-wider">{l}</span></div>)}</div></section>
+
+      <section className="px-5 py-20 lg:py-28"><div className="mx-auto max-w-6xl"><Heading>VOCÊ NÃO PRECISA COMEÇAR CADA SERVIÇO DO ZERO</Heading><p className="mx-auto mt-5 max-w-3xl text-center leading-relaxed text-muted-foreground">Em vez de perder tempo procurando referências, calculando tudo do início ou tentando descobrir o que fabricar, você terá uma biblioteca de projetos pronta para consultar sempre que precisar.</p><div className="mt-12 grid gap-5 md:grid-cols-2"><div className="border border-border bg-muted p-6 sm:p-8"><h3 className="mb-6 text-xl font-black text-muted-foreground">SEM O PACK</h3>{["Procurar ideias na internet","Desenhar projetos do zero","Perder tempo calculando materiais","Ter dificuldade para definir preços","Poucas opções para mostrar ao cliente"].map(x=><p key={x} className="mb-4 flex gap-3 text-sm"><X className="size-5 shrink-0 text-destructive" />{x}</p>)}</div><div className="relative border-2 border-primary bg-coal p-6 text-ice shadow-xl sm:p-8"><span className="absolute right-4 top-0 -translate-y-1/2 bg-primary px-3 py-1 text-xs font-black text-primary-foreground">MAIS PRODUTIVIDADE</span><h3 className="mb-6 text-xl font-black text-primary">COM O PACK</h3>{["Escolha o projeto","Consulte as medidas","Confira os materiais","Planeje a fabricação","Apresente novas opções aos clientes"].map(x=><p key={x} className="mb-4 flex gap-3 text-sm font-semibold"><Check className="size-5 shrink-0 text-primary" />{x}</p>)}</div></div></div></section>
+
+      <section className="bg-muted px-5 py-20 lg:py-28"><div className="mx-auto max-w-7xl"><Heading>UMA BIBLIOTECA DE PROJETOS NA PALMA DA SUA MÃO</Heading><p className="mx-auto mt-4 max-w-2xl text-center text-muted-foreground">São milhares de projetos organizados para você encontrar rapidamente o que precisa.</p><div className="mt-12 grid grid-cols-2 gap-3 md:grid-cols-4 md:gap-5">{categories.map((name,i)=><article key={name} className={`group relative overflow-hidden rounded bg-coal ${i===0||i===5 ? "md:col-span-2" : ""}`}><img src={images.projects[i]} alt={`Categoria de ${name.toLowerCase()}`} loading="lazy" className="aspect-[4/5] h-full w-full object-cover opacity-65 transition-transform duration-300 group-hover:scale-[1.02] md:aspect-[4/3]" /><div className="absolute inset-0 bg-gradient-to-t from-coal via-transparent to-transparent" /><div className="absolute inset-x-0 bottom-0 p-4 text-ice"><h3 className="text-sm font-black sm:text-lg">{name}</h3><span className="mt-2 inline-flex items-center gap-1 text-[11px] font-bold text-primary">VER PROJETOS <ArrowRight className="size-3" /></span></div></article>)}</div></div></section>
+
+      <section className="px-4 py-20 lg:py-28"><div className="mx-auto max-w-7xl"><Heading>VEJA ALGUNS DOS PROJETOS QUE VOCÊ VAI RECEBER</Heading><div className="mt-10 grid grid-cols-2 gap-2 md:grid-cols-4 md:gap-4">{images.projects.slice(0,8).map((src,i)=><img key={src} src={src} alt={`Exemplo de projeto ${i+1}`} loading="lazy" className="aspect-square w-full rounded object-cover transition-opacity hover:opacity-90" />)}</div><p className="mx-auto mt-10 max-w-2xl text-center text-lg font-black">E ESSES SÃO APENAS ALGUNS DOS <span className="text-primary">+3.000 PROJETOS</span> DISPONÍVEIS.</p><div className="mt-6 text-center"><Cta children="QUERO TER ACESSO AO PACK" /></div></div></section>
+
+      <section className="bg-graphite px-5 py-20 lg:py-28"><div className="mx-auto max-w-6xl"><Heading light>NÃO SÃO APENAS FOTOS DE REFERÊNCIA</Heading><p className="mx-auto mt-4 max-w-2xl text-center text-ice/65">Os projetos foram organizados para facilitar sua consulta na hora de fabricar.</p><div className="mt-12 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">{deliverables.map(([Icon,title],i)=><div key={title} className={`border border-steel/40 bg-coal p-5 text-ice ${i===6 ? "lg:col-start-2" : ""}`}><Icon className="mb-5 size-7 text-primary" /><p className="font-bold">{title}</p></div>)}</div><div className="mt-10 text-center"><Cta children="QUERO O CONTEÚDO COMPLETO" /></div></div></section>
+
+      <section className="px-5 py-20 lg:py-28"><div className="mx-auto max-w-6xl"><Heading>DO ACESSO À FABRICAÇÃO EM 4 PASSOS</Heading><div className="relative mt-14 grid gap-8 md:grid-cols-4 md:gap-4"><div className="absolute left-[12%] right-[12%] top-7 hidden h-px bg-border md:block" />{[["ESCOLHA O PROJETO","Encontre a opção ideal na categoria que precisa."],["CONFIRA MEDIDAS E MATERIAIS","Consulte as informações antes de começar."],["FABRIQUE A PEÇA","Use o projeto como referência na produção."],["APRESENTE E VENDA","Mostre mais opções e feche novos serviços."]].map(([t,d],i)=><div key={t} className="relative grid grid-cols-[56px_1fr] gap-4 md:block md:text-center"><span className="relative z-10 grid size-14 place-items-center rounded-full border-4 border-background bg-primary text-lg font-black">0{i+1}</span><div><h3 className="mt-1 text-sm font-black md:mt-6">{t}</h3><p className="mt-2 text-xs leading-relaxed text-muted-foreground">{d}</p></div></div>)}</div></div></section>
+
+      <section className="bg-coal px-5 py-20 text-ice lg:py-28"><div className="mx-auto max-w-7xl"><span className="mx-auto mb-5 block w-fit bg-primary px-4 py-2 text-xs font-black text-primary-foreground">INCLUSOS NO KIT PROFISSIONAL</span><Heading light>E AINDA TEM MAIS: RECEBA 4 BÔNUS</Heading><div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">{bonuses.map(([title,desc],i)=><article key={title} className="overflow-hidden border border-steel/40 bg-graphite"><img src={images.bonuses[i]} alt={title} loading="lazy" className="aspect-square w-full object-cover" /><div className="p-5"><span className="text-xs font-black text-primary">BÔNUS #{String(i+1).padStart(2,"0")}</span><h3 className="mt-2 text-base font-black leading-snug">{title}</h3><p className="mt-3 text-xs leading-relaxed text-ice/60">{desc}</p></div></article>)}</div><div className="mt-9 text-center"><Cta children="QUERO O KIT PROFISSIONAL" /></div></div></section>
+
+      <section className="bg-muted px-5 py-20 lg:py-28"><div className="mx-auto max-w-6xl"><Heading>QUEM TRABALHA COM SERRALHERIA JÁ ESTÁ USANDO</Heading><div className="-mx-5 mt-10 flex snap-x gap-4 overflow-x-auto px-5 pb-5 sm:mx-0 sm:grid sm:grid-cols-3 sm:overflow-visible sm:px-0">{testimonials.map(([name,city,text],i)=><article key={name} className="min-w-[82vw] snap-center rounded border border-border bg-card p-6 shadow-sm sm:min-w-0"><div className="text-lg tracking-widest text-primary">★★★★★</div><p className="my-5 text-sm leading-relaxed">“{text}”</p><div className="flex items-center gap-3"><img src={images.people[i]} alt={name} loading="lazy" className="size-11 rounded-full object-cover" /><div><strong className="block text-sm">{name}</strong><span className="text-xs text-muted-foreground">{city}</span></div></div></article>)}</div><div className="mt-7 text-center"><Cta children="QUERO COMEÇAR AGORA" /></div></div></section>
+
+      <section id="oferta" className="scroll-mt-4 bg-graphite px-5 py-20 lg:py-28"><div className="mx-auto max-w-6xl"><Heading light>ESCOLHA COMO VOCÊ QUER COMEÇAR</Heading><div className="mt-12 grid items-center gap-8 lg:grid-cols-[.85fr_1.15fr]"><Plan name="KIT BÁSICO" old="47" price="10" image={images.basic} items={basic} href="https://pay.wiapy.com/Vi2DVwkEyx" /><Plan name="KIT PROFISSIONAL" old="97" price="27" image={images.pack} items={pro} href="https://pay.wiapy.com/Cm8VLLIwx" featured /></div><p className="mt-7 text-center text-xs text-ice/65">⚡ Acesso imediato após a confirmação do pagamento.</p></div></section>
+
+      <section className="px-5 py-20 lg:py-28"><div className="mx-auto max-w-4xl"><Heading>QUAL PACK É PARA VOCÊ?</Heading><div className="mt-10 overflow-x-auto"><table className="w-full min-w-[560px] border-collapse text-left text-sm"><thead className="bg-coal text-ice"><tr><th className="p-4">RECURSO</th><th className="p-4 text-center">BÁSICO</th><th className="bg-primary p-4 text-center text-primary-foreground">PROFISSIONAL</th></tr></thead><tbody>{[["Projetos selecionados",1,1],["Biblioteca completa",0,1],["Projetos automotivos",0,1],["Churrasqueiras",0,1],["Aparelhos de academia",0,1],["Planilha de precificação",0,1],["Lista de fornecedores",0,1],["Guia de precificação",0,1],["Certificado",0,1]].map(([r,b,p])=><tr key={String(r)} className="border-b border-border"><td className="p-4 font-semibold">{r}</td><td className="p-4 text-center">{b ? "✓" : "—"}</td><td className="bg-primary/10 p-4 text-center font-black">{p ? "✓" : "—"}</td></tr>)}</tbody></table></div><p className="mt-7 text-center font-bold">Quer a experiência completa? <a href="https://pay.wiapy.com/Cm8VLLIwx" className="text-foreground underline decoration-primary decoration-4 underline-offset-4">Escolha o Kit Profissional.</a></p></div></section>
+
+      <section className="bg-card px-5 py-20 lg:py-28"><div className="mx-auto grid max-w-5xl items-center gap-10 md:grid-cols-[220px_1fr]"><div className="mx-auto grid size-44 place-items-center rounded-full border-[10px] border-primary bg-coal text-center text-ice shadow-xl"><span><strong className="block text-6xl font-black text-primary">7</strong><b className="text-xl">DIAS</b></span></div><div className="text-center md:text-left"><h2 className="text-3xl font-black leading-tight sm:text-4xl">VOCÊ TEM 7 DIAS PARA CONHECER O MATERIAL</h2><p className="mt-5 leading-relaxed text-muted-foreground">Após a compra, você terá 7 dias de garantia. Caso o produto não faça sentido para você, poderá solicitar o reembolso dentro do período de garantia diretamente pela plataforma.</p><p className="mt-5 font-bold"><ShieldCheck className="mr-2 inline size-5 text-primary" />Sua compra está protegida.</p><div className="mt-7"><Cta children="QUERO GARANTIR MEU ACESSO" /></div></div></div></section>
+
+      <section className="bg-muted px-5 py-20 lg:py-28"><div className="mx-auto max-w-3xl"><Heading>PERGUNTAS FREQUENTES</Heading><div className="mt-10 divide-y divide-border border-y border-border">{faq.map(([q,a])=><details key={q} className="group"><summary className="grid cursor-pointer grid-cols-[1fr_auto] items-center gap-4 py-5 text-sm font-bold"><span>{q}</span><ChevronDown className="size-5 transition-transform group-open:rotate-180" /></summary><p className="pb-5 pr-8 text-sm leading-relaxed text-muted-foreground">{a}</p></details>)}</div></div></section>
+
+      <section className="bg-coal px-5 py-16 text-ice lg:py-24"><div className="mx-auto grid max-w-6xl items-center gap-8 lg:grid-cols-[1fr_360px]"><div><h2 className="text-3xl font-black leading-tight sm:text-5xl">PARE DE PROCURAR PROJETOS. <span className="text-primary">TENHA SUA PRÓPRIA BIBLIOTECA.</span></h2><p className="mt-5 max-w-2xl text-ice/65">Tenha milhares de referências e projetos de serralheria disponíveis sempre que precisar.</p><div className="mt-7"><Cta /></div><div className="mt-5 grid grid-cols-2 gap-2 text-[11px] font-semibold text-ice/60 sm:flex sm:gap-4"><span>🔒 Pagamento seguro</span><span>⚡ Acesso imediato</span><span>♾️ Acesso vitalício</span><span>🛡️ 7 dias de garantia</span></div></div><img src={images.pack} alt="Pack Tesouro do Serralheiro" loading="lazy" className="mx-auto w-full max-w-sm" /></div></section>
+
+      <footer className="border-t border-steel/30 bg-coal px-5 py-10 text-center text-ice/55"><p className="font-black text-ice">PACK TESOURO DO SERRALHEIRO</p><nav className="my-5 flex flex-wrap justify-center gap-4 text-xs"><a href="#">Termos de Uso</a><a href="#">Política de Privacidade</a><a href="mailto:suporte@packtesourodoserralheiro.com.br">Suporte</a></nav><p className="mx-auto max-w-3xl text-[10px] leading-relaxed">Este produto é um material digital. Resultados de fabricação, vendas e faturamento dependem da experiência, execução, custos, mercado e estratégia de cada usuário.</p></footer>
+    </main>
   );
+}
+
+function Plan({ name, old, price, image, items, href, featured = false }: { name: string; old: string; price: string; image: string; items: string[]; href: string; featured?: boolean }) {
+  return <article className={`relative rounded bg-ice p-6 text-foreground shadow-2xl sm:p-8 ${featured ? "border-4 border-primary lg:py-10" : "border border-border"}`}>{featured && <span className="absolute left-1/2 top-0 -translate-x-1/2 -translate-y-1/2 whitespace-nowrap bg-primary px-5 py-2 text-xs font-black text-primary-foreground">★ MAIS COMPLETO</span>}<div className="grid grid-cols-[100px_1fr] items-center gap-4 sm:grid-cols-[130px_1fr]"><img src={image} alt={name} loading="lazy" className="w-full" /><div><h3 className="text-xl font-black">{name}</h3><p className="mt-2 text-xs text-muted-foreground">De R$ {old}</p><p className="text-sm font-black">HOJE <span className="text-5xl text-foreground">R${price}</span></p></div></div><ul className="my-7 space-y-2.5">{items.map(x=><li key={x} className="flex gap-2 text-xs font-medium"><Check className="size-4 shrink-0 text-primary" />{x}</li>)}</ul><a href={href} className="flex min-h-14 w-full items-center justify-center gap-2 rounded bg-primary px-4 text-center text-sm font-black text-primary-foreground shadow-lg transition-transform hover:-translate-y-0.5">{featured ? "QUERO O PACK COMPLETO" : "QUERO O KIT BÁSICO"}<ArrowRight className="size-5" /></a><p className="mt-4 text-center text-[10px] text-muted-foreground"><LockKeyhole className="mr-1 inline size-3" />Pagamento seguro · Acesso vitalício</p></article>;
 }
